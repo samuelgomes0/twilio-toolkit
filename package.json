@@ -2,10 +2,15 @@
   "name": "twilio-toolkit",
   "version": "1.0.0",
   "description": "Utilitários para integração com a API da Twilio",
-  "main": "index.js",
+  "main": "dist/cli.js",
   "bin": {
     "twilio-toolkit": "./dist/cli.js"
   },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc && npm run copy-config",
     "copy-config": "xcopy src\\config dist\\config /E /I /Y"
