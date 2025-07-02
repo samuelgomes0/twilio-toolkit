@@ -38,28 +38,6 @@ program
   });
 
 // =============================================
-// CLOSE CONVERSATION STATE
-// =============================================
-program
-  .command("close-conversation-state")
-  .description("Fecha o estado de uma conversa específica")
-  .argument("[env]", "Ambiente de configuração (ex: prd, hml)")
-  .argument("[sid]", "SID da conversa")
-  .option("--env <env>", "Ambiente de configuração (ex: prd, hml)")
-  .option("--sid <sid>", "SID da conversa")
-  .action(async (envArg, sidArg, options) => {
-    const env = options.env || envArg;
-    const sid = options.sid || sidArg;
-
-    if (!env || !sid) {
-      console.error("❌ É necessário fornecer 'env' e 'sid'.");
-      process.exit(1);
-    }
-
-    await closeConversationState(env, sid);
-  });
-
-// =============================================
 // FETCH ALL ACTIVE CONVERSATIONS
 // =============================================
 program
@@ -82,6 +60,28 @@ program
     }
 
     await fetchAllActiveConversations(env, address);
+  });
+
+// =============================================
+// CLOSE CONVERSATION STATE
+// =============================================
+program
+  .command("close-conversation-state")
+  .description("Fecha o estado de uma conversa específica")
+  .argument("[env]", "Ambiente de configuração (ex: prd, hml)")
+  .argument("[sid]", "SID da conversa")
+  .option("--env <env>", "Ambiente de configuração (ex: prd, hml)")
+  .option("--sid <sid>", "SID da conversa")
+  .action(async (envArg, sidArg, options) => {
+    const env = options.env || envArg;
+    const sid = options.sid || sidArg;
+
+    if (!env || !sid) {
+      console.error("❌ É necessário fornecer 'env' e 'sid'.");
+      process.exit(1);
+    }
+
+    await closeConversationState(env, sid);
   });
 
 // =============================================
