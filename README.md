@@ -58,6 +58,18 @@ twilio-toolkit configure-env --env prd --accountSid ACXXXX --authToken XXXX
 - Liste ambientes configurados com `list-envs`.
 - Execute comandos conforme sua necessidade, usando argumentos ou flags.
 
+## 🤝 Como colaborar
+
+Contribuições são bem-vindas! Para ajudar a manter a qualidade do projeto:
+
+1. **Faça um fork** do repositório e crie um branch com sua feature ou correção.
+2. **Siga o padrão de organização**: cada recurso ou helper deve ser modular e reutilizável.
+3. **Use mensagens de commit claras e descritivas.**
+4. **Abra um Pull Request (PR)** com uma descrição objetiva do que foi adicionado ou alterado.
+5. Sempre que possível, **explique por que sua mudança é útil para outros usuários.**
+
+💡 **Dica:** Antes de propor mudanças grandes, abra uma _issue_ para discutir ideias ou melhorias!
+
 ## 📄 Licença
 
 MIT License.
