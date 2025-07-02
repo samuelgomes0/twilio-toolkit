@@ -1,4 +1,4 @@
-# Twilio Utils
+# Twilio Toolkit
 
 Um conjunto de funções utilitárias para facilitar a integração com a API da Twilio.
 
@@ -59,15 +59,11 @@ Exemplo para ambiente de produção:
 npm install
 ```
 
-2. Instale o `ts-node` globalmente, se ainda não o fez:
-
-```bash
-npm install -g ts-node
-```
-
 2. Configure suas credenciais no diretório `config/`.
 
-> 💡 Com o `ts-node` global, você também pode rodar os arquivos `.ts` diretamente com o Code Runner.
+3. Caso ainda não tenha feito, instale o `ts-node` globalmente e a extensão do Code Runner no VSCode.
+
+4. Execute os scripts diretamente no VSCode usando o Code Runner.
 
 ## 📄 Licença
 
