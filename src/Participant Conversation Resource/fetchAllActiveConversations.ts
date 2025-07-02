@@ -1,21 +1,20 @@
 import getTwilioClient from "../config/getTwilioClient";
-const environment = "prd";
 
 /**
- * Fetches all active conversations for a given participant address.
- * @param {string} participantAddress - The address of the participant (e.g., WhatsApp number).
- * @returns {Promise<void>}
+ * Busca todas as conversas ativas de um participante em um ambiente específico.
+ * @param {string} environment - O ambiente de configuração (ex.: 'dev', 'prd').
+ * @param {string} participantAddress - O endereço WhatsApp do participante (ex.: '5511999999999').
  */
-
 async function fetchAllActiveConversations(
+  environment: string,
   participantAddress: string
-): Promise<void> {
-  const twilioClient = await getTwilioClient(environment);
-
+) {
   try {
+    const twilioClient = getTwilioClient(environment);
+
     const conversations =
       await twilioClient.conversations.v1.participantConversations.list({
-        address: participantAddress,
+        address: `whatsapp:+${participantAddress}`,
       });
 
     const activeConversations = conversations.filter(
@@ -24,25 +23,24 @@ async function fetchAllActiveConversations(
 
     if (!activeConversations.length) {
       console.log(
-        `ℹ️ No active conversations found for participant ${participantAddress}.`
+        `ℹ️ Nenhuma conversa ativa encontrada para o participante ${participantAddress}.`
       );
       return;
     }
 
     console.log(
-      `✅ Fetched ${activeConversations.length} active conversations for participant ${participantAddress}.`
+      `✅ Encontradas ${activeConversations.length} conversas ativas para o participante ${participantAddress}.`
     );
 
     for (const conversation of activeConversations) {
       console.log(
-        `ℹ️ Conversation SID: ${conversation.conversationSid}, State: ${conversation.conversationState}`
+        `ℹ️ SID da conversa: ${conversation.conversationSid}, Estado: ${conversation.conversationState}`
       );
     }
   } catch (error) {
-    console.error("❌ Error closing conversation state:", error);
-    throw error;
+    console.error("❌ Erro ao buscar conversas ativas:", error);
+    process.exit(1);
   }
 }
 
-const participantAddress = `whatsapp:+${"NUMBER"}`;
-fetchAllActiveConversations(participantAddress);
+export default fetchAllActiveConversations;

@@ -1,28 +1,28 @@
 import getTwilioClient from "../config/getTwilioClient";
-const environment = "prd";
 
 /**
- * Closes the conversation state for a given conversation SID.
- * @param {string} conversationSid - The SID of the conversation to close.
- * @returns {Promise<void>}
+ * Fecha o estado de uma conversa específica com base no SID informado.
+ * @param {string} environment - O ambiente de configuração a ser utilizado (ex.: 'prd', 'hml').
+ * @param {string} conversationSid - O SID da conversa que deve ser fechada.
  */
-
-async function closeConversationState(conversationSid: string): Promise<void> {
-  const twilioClient = await getTwilioClient(environment);
-
+async function closeConversationState(
+  environment: string,
+  conversationSid: string
+) {
   try {
+    const twilioClient = getTwilioClient(environment);
+
     await twilioClient.conversations.v1.conversations(conversationSid).update({
       state: "closed",
     });
 
     console.log(
-      `✅ Conversation state for ${conversationSid} closed successfully.`
+      `✅ Estado da conversa para ${conversationSid} fechado com sucesso.`
     );
   } catch (error) {
-    console.error("❌ Error closing conversation state:", error);
-    throw error;
+    console.error("❌ Erro ao fechar o estado da conversa:", error);
+    process.exit(1);
   }
 }
 
-const conversationSid = "CHXXXXXXXXXXXXXXXX";
-closeConversationState(conversationSid);
+export default closeConversationState;

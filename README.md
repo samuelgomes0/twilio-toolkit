@@ -1,37 +1,33 @@
 # Twilio Toolkit
 
-Um conjunto de funções utilitárias para facilitar a integração com a API da Twilio.
+Um conjunto de utilitários e uma CLI para facilitar a integração com a API da Twilio.
 
 ## 📌 Descrição
 
-Este repositório reúne scripts e helpers que automatizam tarefas comuns com a Twilio API, como:
+Scripts e comandos para automatizar tarefas comuns com a Twilio API, como:
 
 - Fechar o estado de uma conversa.
-- Listar conversas ativas.
-- Gerenciar participantes.
-- Outros recursos customizados conforme necessidade.
+- Listar conversas ativas de um participante.
+- Gerenciar múltiplos ambientes de forma organizada.
 
-## 🚀 Estrutura
+Este projeto é modular e poderá conter mais códigos no futuro.
+
+## 🚀 Estrutura básica
 
 ```
 src/
- ├── config/            # Configurações e credenciais de ambiente
- │   ├── getTwilioClient.ts
- │   ├── prd.json
- │   └── hml.json
- ├── Conversation Resource/
- │   └── closeConversationState.ts
- ├── Participant Conversation Resource/
- │   └── fetchAllActiveConversations.ts
+ ├── config/                      # Configurações de ambientes
+ ├── Conversation Resource/       # Funções para gerenciar conversas
+ ├── Participant Conversation Resource/ # Funções para participantes
+ ├── cli.ts                       # CLI principal
 ```
 
 ## ⚙️ Pré-requisitos
 
 - Node.js >= 18
 - TypeScript >= 4.x
-- Conta Twilio configurada
-- Variáveis de ambiente para autenticação
-- Instalar o `ts-node` globalmente para uso com o [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) no VSCode:
+- Conta Twilio ativa
+- `ts-node` global para rodar via [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
 ```bash
 npm install -g ts-node
@@ -39,31 +35,28 @@ npm install -g ts-node
 
 ## 📁 Configuração de ambientes
 
-Para cada ambiente (`prd`, `hml` etc.), crie um arquivo JSON com o mesmo nome dentro da pasta `config/`:
+Os ambientes são salvos em `~/.twilio-toolkit/`:
 
-Exemplo para ambiente de produção:
+Exemplo:
 
 ```json
-// config/prd.json
 {
   "accountSid": "ACXXXXXXXXXXXXXXXX",
   "authToken": "XXXXXXXXXXXXXXXX"
 }
 ```
 
-## 🏃 Como usar
-
-1. Instale as dependências:
+Crie ou atualize usando:
 
 ```bash
-npm install
+twilio-toolkit configure-env --env prd --accountSid ACXXXX --authToken XXXX
 ```
 
-2. Configure suas credenciais no diretório `config/`.
+## 🏃 Uso básico
 
-3. Caso ainda não tenha feito, instale o `ts-node` globalmente e a extensão do Code Runner no VSCode.
-
-4. Execute os scripts diretamente no VSCode usando o Code Runner.
+- Configure as credenciais com `configure-env`.
+- Liste ambientes configurados com `list-envs`.
+- Execute comandos conforme sua necessidade, usando argumentos ou flags.
 
 ## 📄 Licença
 
@@ -71,6 +64,6 @@ MIT License.
 
 ---
 
-Mantenha simples. Automatize tarefas repetitivas. Tenha controle sobre suas conversas Twilio.
+Mantenha simples. Automatize tarefas repetitivas. Controle suas conversas Twilio.
 
 **Desenvolvido por Samuel Gomes Rosa**
