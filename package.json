@@ -1,0 +1,15 @@
+{
+  "name": "twilio-toolkit",
+  "version": "1.0.0",
+  "description": "Utilitários para integração com a API da Twilio",
+  "main": "index.js",
+  "scripts": {},
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "twilio": "^5.7.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
