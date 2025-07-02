@@ -1,6 +1,6 @@
 {
   "name": "twilio-toolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Utilitários para integração com a API da Twilio",
   "main": "dist/cli.js",
   "bin": {
