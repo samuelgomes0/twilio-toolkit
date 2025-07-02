@@ -44,5 +44,5 @@ async function fetchAllActiveConversations(
   }
 }
 
-const participantAddress = `whatsapp:+${"555381219026"}`;
+const participantAddress = `whatsapp:+${"NUMBER"}`;
 fetchAllActiveConversations(participantAddress);

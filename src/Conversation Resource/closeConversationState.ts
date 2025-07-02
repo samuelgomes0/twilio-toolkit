@@ -24,5 +24,5 @@ async function closeConversationState(conversationSid: string): Promise<void> {
   }
 }
 
-const conversationSid = "CH14c5cc0b55304a61a4f80db6d24819d3";
+const conversationSid = "CHXXXXXXXXXXXXXXXX";
 closeConversationState(conversationSid);
