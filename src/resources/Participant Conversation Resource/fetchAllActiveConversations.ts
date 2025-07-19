@@ -1,9 +1,10 @@
 import getTwilioClient from "../../config/getTwilioClient";
+import { ErrorHandler } from "../../utils/errorHandler";
 
 /**
  * Busca todas as conversas ativas de um participante em um ambiente específico.
  * @param {string} environment - O ambiente de configuração (ex.: 'dev', 'prd').
- * @param {string} participantAddress - O endereço WhatsApp do participante (ex.: '5511999999999').
+ * @param {string} participantAddress - O endereço WhatsApp do participante (ex.: '551199999999').
  */
 async function fetchAllActiveConversations(
   environment: string,
@@ -38,8 +39,7 @@ async function fetchAllActiveConversations(
       );
     }
   } catch (error) {
-    console.error("❌ Erro ao buscar conversas ativas:", error);
-    process.exit(1);
+    ErrorHandler.handleApiError(error, "buscar conversas ativas");
   }
 }
 

@@ -23,6 +23,24 @@ export interface Participant {
 export interface MenuOption {
   label: string;
   action: () => Promise<void>;
+  category?: MenuCategory;
+}
+
+export enum MenuCategory {
+  CONFIGURATION = "⚙️  Configuração",
+  TWILIO_RESOURCES = "🔧 Recursos da Twilio",
+}
+
+export interface MenuCategoryConfig {
+  title: string;
+  options: MenuOption[];
+  icon: string;
+}
+
+export interface MainMenuOption {
+  label: string;
+  category: MenuCategory;
+  icon: string;
 }
 
 export interface CommandOptions {
@@ -31,4 +49,16 @@ export interface CommandOptions {
   authToken?: string;
   address?: string;
   sid?: string;
+}
+
+export interface TwilioResource {
+  name: string;
+  description: string;
+  actions: TwilioResourceAction[];
+}
+
+export interface TwilioResourceAction {
+  name: string;
+  description: string;
+  action: () => Promise<void>;
 }

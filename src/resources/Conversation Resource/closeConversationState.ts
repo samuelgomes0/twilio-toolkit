@@ -1,4 +1,5 @@
 import getTwilioClient from "../../config/getTwilioClient";
+import { ErrorHandler } from "../../utils/errorHandler";
 
 /**
  * Fecha o estado de uma conversa específica com base no SID informado.
@@ -20,8 +21,7 @@ async function closeConversationState(
       `✅ Estado da conversa para ${conversationSid} fechado com sucesso.`
     );
   } catch (error) {
-    console.error("❌ Erro ao fechar o estado da conversa:", error);
-    process.exit(1);
+    ErrorHandler.handleApiError(error, "fechar o estado da conversa");
   }
 }
 

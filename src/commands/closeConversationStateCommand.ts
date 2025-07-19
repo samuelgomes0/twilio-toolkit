@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import closeConversationState from "../resources/Conversation Resource/closeConversationState";
-import { InputHelper } from "../utils/inputHelper";
+import { ErrorHandler } from "../utils/errorHandler";
+import { InputUtils } from "../utils/inputUtils";
 
 export default function closeConversationStateCommand(program: Command) {
   program
@@ -11,20 +12,28 @@ export default function closeConversationStateCommand(program: Command) {
     .option("--env <env>", "Ambiente de configuração (ex: prd, hml)")
     .option("--sid <sid>", "SID da conversa")
     .action(async (envArg, sidArg, options) => {
-      let env = options.env || envArg;
-      let sid = options.sid || sidArg;
+      try {
+        let env = options.env || envArg;
+        let sid = options.sid || sidArg;
 
-      if (!env) {
-        env = await InputHelper.promptRequiredInput(
-          "Ambiente não informado. Informe o ambiente (ex: prd, hml):"
+        if (!env) {
+          env = await InputUtils.promptRequiredInput(
+            "Ambiente não informado. Informe o ambiente (ex: prd, hml):"
+          );
+        }
+
+        if (!sid) {
+          sid = await InputUtils.promptRequiredInput(
+            "SID da conversa não informado. Informe o SID:"
+          );
+        }
+
+        await closeConversationState(env, sid);
+      } catch (error) {
+        ErrorHandler.handleError(
+          error,
+          "executar comando close-conversation-state"
         );
       }
-      if (!sid) {
-        sid = await InputHelper.promptRequiredInput(
-          "SID da conversa não informado. Informe o SID:"
-        );
-      }
-
-      await closeConversationState(env, sid);
     });
 }

@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import fetchAllActiveConversations from "../resources/Participant Conversation Resource/fetchAllActiveConversations";
-import { InputHelper } from "../utils/inputHelper";
+import { ErrorHandler } from "../utils/errorHandler";
+import { InputUtils } from "../utils/inputUtils";
 
 export default function fetchAllActiveConversationsCommand(program: Command) {
   program
@@ -14,20 +15,28 @@ export default function fetchAllActiveConversationsCommand(program: Command) {
       "Endereço do participante (ex: WhatsApp number)"
     )
     .action(async (envArg, addressArg, options) => {
-      let env = options.env || envArg;
-      let address = options.address || addressArg;
+      try {
+        let env = options.env || envArg;
+        let address = options.address || addressArg;
 
-      if (!env) {
-        env = await InputHelper.promptRequiredInput(
-          "Ambiente não informado. Informe o ambiente (ex: prd, hml):"
+        if (!env) {
+          env = await InputUtils.promptRequiredInput(
+            "Ambiente não informado. Informe o ambiente (ex: prd, hml):"
+          );
+        }
+
+        if (!address) {
+          address = await InputUtils.promptRequiredInput(
+            "Endereço do participante não informado. Informe o número (ex: WhatsApp):"
+          );
+        }
+
+        await fetchAllActiveConversations(env, address);
+      } catch (error) {
+        ErrorHandler.handleError(
+          error,
+          "executar comando fetch-all-active-conversations"
         );
       }
-      if (!address) {
-        address = await InputHelper.promptRequiredInput(
-          "Endereço do participante não informado. Informe o número (ex: WhatsApp):"
-        );
-      }
-
-      await fetchAllActiveConversations(env, address);
     });
 }

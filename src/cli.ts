@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 
 import { CommandManager } from "./cli/commandManager";
-import { InteractiveMenu } from "./ui/interactiveMenu";
+import { MenuManager } from "./ui/menuManager";
 
 async function main(): Promise<void> {
-  // Se argumentos foram passados, usa o modo CLI
   if (process.argv.length > 2) {
     const commandManager = new CommandManager();
     await commandManager.parse();
   } else {
-    // Caso contrário, inicia o menu interativo
-    await InteractiveMenu.showMainMenu();
+    await MenuManager.showMainMenu();
   }
 }
 
