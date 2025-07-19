@@ -1,4 +1,4 @@
-import getTwilioClient from "../config/getTwilioClient";
+import getTwilioClient from "../../config/getTwilioClient";
 
 /**
  * Busca todas as conversas ativas de um participante em um ambiente específico.

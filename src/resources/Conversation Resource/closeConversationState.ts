@@ -1,4 +1,4 @@
-import getTwilioClient from "../config/getTwilioClient";
+import getTwilioClient from "../../config/getTwilioClient";
 
 /**
  * Fecha o estado de uma conversa específica com base no SID informado.
